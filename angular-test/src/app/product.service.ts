@@ -19,19 +19,20 @@ export class ProductService {
     return this.dataChange.value;
   }
 
-  getAllProducts(): void{
+  public getAllProducts(): void{
     this.getProducts().subscribe(
       data => { this.dataChange.next(data);
       },
       //(error: HttpErrorResponse) => { console.log (error.name + ' ' + error.message); },
     );
   }
-  getProducts(): Observable<Product[]> {
+  public getProducts(): Observable<Product[]> {
     const products = of(PRODUCTS);
+    console.log(JSON.stringify(products));
     return products;
   }
 
-  getProduct(name: string): Observable<Product> {
+  public getProduct(name: string): Observable<Product> {
     const product = PRODUCTS.find(p => p.name === name)!;
     return of(product);
   }

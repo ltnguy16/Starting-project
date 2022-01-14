@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 //import { StockDataSource } from './stock-datasource';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
@@ -27,28 +27,29 @@ export class StockComponent implements OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['name', 'type', 'price', 'quantity'];
-  data: ProductService | any;
-  dataSource: StockTableDataSource | any;
+  dataSource = new MatTableDataSource<Product>();//StockTableDataSource | any;
 
+  dataSrc: Product[] = [];
 
-
-
-  ngOnInit(): void {
-      this.loadData()
-      //this.productService.getAllProducts()
+  // tableDataSource = new MatTableDataSource<Product>();
+  
+  constructor(private productService: ProductService) {
   }
 
-  constructor() {}
+  
+  ngOnInit(): void {
+   this.productService.getProducts().subscribe(x=> {
+    this.dataSrc = x;
+     x.forEach( y => {
+       console.log(JSON.stringify(y));
+     })  
+    this.loadData()
+   });
+   }
+
   
   public loadData() {
-    this.data = new ProductService();
-    this.dataSource = new StockTableDataSource(this.data, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup').subscribe(() => {
-      if(!this.dataSource) {
-        return;
-      }
-      this.dataSource.filter = this.filter.nativeElement.value;
-    });
+    this.dataSource.data = this.dataSrc;
   }
 
 }
