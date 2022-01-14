@@ -1,0 +1,47 @@
+<div *ngIf="product">
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+        <mat-card class="signIn-card">
+          <mat-card-header>
+            <mat-card-title>{{product.name}}</mat-card-title>
+          </mat-card-header>
+      
+          <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Type:" formControlName="type" required>
+                        <mat-error>
+                            the field is blank
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                    <input matInput placeholder="Price:" formControlName="price" required>
+                    <span matSuffix>$</span>
+                    <mat-error >
+                        the field is blank
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                    <input matInput placeholder="Quantity:" formControlName="quantity" required>
+                    <mat-error >
+                        the field is blank
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary">Update</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+      <button (click)="goBack()">go back</button>
+</div>
