@@ -22,12 +22,18 @@ export class SignInComponent {
   ) {}
 
   async onSubmit(): Promise<void> {
+    if(this.authenticate()) 
+      this.router.navigate(["/stock"]);
+    else { alert("Invalid credentials"); }
+  }
+
+  authenticate(): boolean {
     if(this.signInForm.valid) {
       const username = this.signInForm.get('username')?.value;
       const password = this.signInForm.get('password')?.value;
-      if(username == 'test@test.com' && password == "test")
-        this.router.navigate(["/stock"]);
-      else { alert("Invalid credentials"); }
-    } 
+      if(username == "test@test.com" && password == "test")
+        return true;
+    }
+    return false;
   }
 }
