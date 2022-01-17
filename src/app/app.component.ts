@@ -10,10 +10,8 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Inventory';
 
-  constructor(private router: Router,){
-
-  }
-
+  constructor(private router: Router,){}
+  
   logout(): void{
     this.router.navigate(['']);
   }

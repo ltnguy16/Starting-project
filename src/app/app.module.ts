@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,9 +16,14 @@ import { StockComponent } from './stock/stock.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+
+
+import { EditDialogComponent } from './dialogs/edit/edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './dialogs/delete/delete.component';
+import { AddDialogComponent } from './dialogs/add/add.component';
 
 
 @NgModule({
@@ -25,7 +31,9 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     SignInComponent,
     StockComponent,
-    ProductDetailComponent,
+    EditDialogComponent,
+    DeleteDialogComponent,
+    AddDialogComponent,
 
   ],
   imports: [
@@ -43,7 +51,14 @@ import { MatIconModule } from '@angular/material/icon';
     MatSortModule,
     MatToolbarModule,
     MatIconModule,
+    FormsModule,
+    MatDialogModule,
 
+  ],
+  entryComponents: [
+    EditDialogComponent,
+    DeleteDialogComponent,
+    AddDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
